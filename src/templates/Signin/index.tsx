@@ -1,9 +1,17 @@
+import React from "react"
+
 import { useState } from "react"
 import axios from "axios"
 
-export const Home = () => {
+import { Link } from "react-router-dom"
 
-    const FORM_RESET: UserForm = {
+import { motion } from "framer-motion"
+
+import { RegisterForm } from "../../interfaces"
+
+export const Register = () => {
+
+    const FORM_RESET: RegisterForm = {
         name: "",
         email: "",
         password: "",
@@ -11,7 +19,7 @@ export const Home = () => {
         persistent: true,
     }
 
-    const [user, setUser] = useState<UserForm>({
+    const [user, setUser] = useState<RegisterForm>({
         name: "",
         email: "",
         password: "",
@@ -48,8 +56,14 @@ export const Home = () => {
     }
 
     return (
-        <main className="flex items-center justify-center h-screen bg-slate-600">
-            <form onSubmit={handleSubmit} className="p-6 bg-slate-800 rounded-md min-w-[400px]">
+        <main className="flex items-center justify-center h-screen bg-gradient-to-b from-slate-700 to-pink-800">
+            <motion.form
+                initial={{ opacity: 0, translateY: 50 }}
+                animate={{ opacity: 1, translateY: 0 }}
+                transition={{ duration: 0.3 }}
+                onSubmit={handleSubmit}
+                className="p-6 bg-slate-800 rounded-md min-w-[450px]"
+            >
                 <div className="mb-4 flex flex-col">
                     <label className="mb-1 text-lg text-white" htmlFor="">Nome</label>
                     <input
@@ -94,12 +108,16 @@ export const Home = () => {
                     />
                 </div>
 
+                <div className="flex justify-end">
+                    <Link className="text-white" to="/">Já possui uma conta</Link>
+                </div>
+
                 <button
                     className="w-full px-6 py-4 mt-4 text-lg rounded-md text-white bg-pink-800 hover:bg-white hover:text-pink-800 transition"
                 >
                     Cadastrar
                 </button>
-            </form>
+            </motion.form>
         </main>
     )
 }

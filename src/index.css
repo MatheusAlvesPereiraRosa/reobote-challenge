@@ -5,6 +5,20 @@
 body {
     position: relative;
     min-height: 100vh;
+    @apply bg-slate-900;
+}
+
+@layer utilities {
+    .alert {
+        position: absolute;
+        top: 10%;
+        right: 10px;
+        max-width: 16rem;
+    }
+
+    .alert-message {
+        max-width: 15rem;
+    }
 }
 
 @layer base {
@@ -35,12 +49,12 @@ body {
     }
 
     body::-webkit-scrollbar-track {
-        background: rgb(3, 59, 73);
+        @apply bg-slate-900
     }
 
     body::-webkit-scrollbar-thumb {
-        @apply bg-amber-600;
-        border: 3px solid rgb(3, 59, 73);
+        @apply bg-pink-800;
+        border: 3px solid #0F172A;
         border-radius: 20px;
     }
 }
