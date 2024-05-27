@@ -1,9 +1,10 @@
+import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 
-import { Home } from './template/Signin/index.tsx'
-import { Signin } from "./template/Login/index.tsx"
-import { Dashboard } from './template/Dashboard/index.tsx'
+import { Register } from './templates/Signin/index.tsx'
+import { Login } from "./templates/Login/index.tsx"
+import { Dashboard } from './templates/Dashboard/index.tsx'
 
 import {
     createBrowserRouter,
@@ -15,11 +16,11 @@ import {
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Home />
+        element: <Login />
     },
     {
-        path: "/signin",
-        element: <Signin />
+        path: "/register",
+        element: <Register />
     },
     {
         path: "/dashboard",

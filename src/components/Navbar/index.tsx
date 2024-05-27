@@ -1,0 +1,43 @@
+import React from "react"
+import { Link } from "react-router-dom"
+
+import { motion } from "framer-motion"
+
+import { GrLogout } from "react-icons/gr";
+import { FaUserCircle } from "react-icons/fa";
+
+export const Navbar = () => {
+    return (
+        <nav className="bg-pink-800">
+            <ul className="flex justify-between">
+                <motion.div>
+                    <motion.li
+                        whileTap={{ scale: 0.9 }}
+                        whileHover={{ scale: 1.1 }}
+                        className="p-6 hover:text-white"
+                    >
+                        <Link className="font-bold text-lg " to="/dashboard">
+                            Dashboard
+                        </Link>
+                    </motion.li>
+                </motion.div>
+                <motion.div className="flex flex-row items-center me-3">
+                    <motion.li className="flex flex-row items-center py-2 px-3 bg-slate-900 rounded-full text-pink-600">
+                        <span className="me-2"><FaUserCircle size={28} /></span>
+                        <p className="m-0">Alguém testando</p>
+
+                        <motion.div
+                            whileTap={{ scale: 0.9 }}
+                            whileHover={{ scale: 1.2 }}
+                            className="flex items-center ms-3"
+                        >
+                            <Link className="hover:text-white transition" to="/logout">
+                                <span><GrLogout size={24} /></span>
+                            </Link>
+                        </motion.div>
+                    </motion.li>
+                </motion.div>
+            </ul>
+        </nav>
+    )
+}
