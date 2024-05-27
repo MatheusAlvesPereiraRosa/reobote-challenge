@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    position: relative;
+    min-height: 100vh;
+}
+
+@layer base {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: lexend, sans-serif
+    }
+
+    p,
+    a,
+    label,
+    button {
+        font-family: lexend, Verdana;
+    }
+
+    .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    body::-webkit-scrollbar {
+        width: .95rem;
+    }
+
+    body::-webkit-scrollbar-track {
+        background: rgb(3, 59, 73);
+    }
+
+    body::-webkit-scrollbar-thumb {
+        @apply bg-amber-600;
+        border: 3px solid rgb(3, 59, 73);
+        border-radius: 20px;
+    }
+}
