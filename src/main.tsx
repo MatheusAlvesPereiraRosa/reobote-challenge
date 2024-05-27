@@ -1,8 +1,8 @@
 import ReactDOM from 'react-dom/client'
 import './index.css'
 
-import { Home } from './template/Home/index.tsx'
-import { Signin } from "./template/Signin/index.tsx"
+import { Home } from './template/Signin/index.tsx'
+import { Signin } from "./template/Login/index.tsx"
 import { Dashboard } from './template/Dashboard/index.tsx'
 
 import {
