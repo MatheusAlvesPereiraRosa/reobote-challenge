@@ -12,6 +12,7 @@ import {
     Route,
     Link,
 } from 'react-router-dom'
+import AuthGuard from './components/AuthGuard/index.tsx'
 
 const router = createBrowserRouter([
     {
@@ -24,7 +25,11 @@ const router = createBrowserRouter([
     },
     {
         path: "/dashboard",
-        element: <Dashboard />
+        element: (
+            <AuthGuard>
+                <Dashboard />
+            </AuthGuard>
+        )
     }
 ])
 
