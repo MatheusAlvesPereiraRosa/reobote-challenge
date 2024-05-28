@@ -13,6 +13,8 @@ import {
     Link,
 } from 'react-router-dom'
 import AuthGuard from './components/AuthGuard/index.tsx'
+import { AuthProvider } from './context/authContext.tsx'
+import { UserProvider } from './context/userContext.tsx'
 
 const router = createBrowserRouter([
     {
@@ -34,5 +36,9 @@ const router = createBrowserRouter([
 ])
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <RouterProvider router={router} />
+    <AuthProvider>
+        <UserProvider>
+            <RouterProvider router={router} />
+        </UserProvider>
+    </AuthProvider>
 )

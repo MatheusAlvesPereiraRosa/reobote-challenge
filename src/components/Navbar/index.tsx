@@ -6,7 +6,11 @@ import { motion } from "framer-motion"
 import { GrLogout } from "react-icons/gr";
 import { FaUserCircle } from "react-icons/fa";
 
-export const Navbar = () => {
+interface Props {
+    handleLogout: () => {}
+}
+
+export const Navbar = ({handleLogout}: Props) => {
     return (
         <nav className="bg-pink-800">
             <ul className="flex justify-between">
@@ -31,9 +35,9 @@ export const Navbar = () => {
                             whileHover={{ scale: 1.2 }}
                             className="flex items-center ms-3"
                         >
-                            <Link className="hover:text-white transition" to="/logout">
+                            <div onClick={handleLogout} className="hover:text-white transition">
                                 <span><GrLogout size={24} /></span>
-                            </Link>
+                            </div>
                         </motion.div>
                     </motion.li>
                 </motion.div>

@@ -5,11 +5,18 @@ import axios from "axios"
 
 import { motion } from "framer-motion"
 
+import { useNavigate } from "react-router-dom"
+
 import { LoginForm } from "../../interfaces"
 import { Link } from "react-router-dom"
 import { Alert } from "../../components/Alert"
+import { useAuth } from "../../context/authContext"
 
 export const Login = () => {
+
+    const { dispatch: authDispatch } = useAuth()
+
+    const navigate = useNavigate()
 
     const FORM_RESET: LoginForm = {
         email: "",
@@ -20,19 +27,21 @@ export const Login = () => {
     const [user, setUser] = useState<LoginForm>({
         email: "",
         password: "",
-        persistent: true,
+        persistent: true
     })
 
     const registerUser = async () => {
         await axios
             .post("https://teste.reobote.tec.br/api/login", user)
             .then((res) => {
-                //setMessage(res.data)
+                authDispatch({ type: "LOGIN", payload: res.data.access_token })
                 console.log(res.data)
                 setUser(FORM_RESET)
+                navigate("/dashboard")
             })
             .catch((err) => {
                 //setMessage(err.response.data)
+                setUser(FORM_RESET)
                 console.log(err.response.data)
             })
     }
@@ -47,6 +56,8 @@ export const Login = () => {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+
+        console.log(user)
 
         registerUser()
     }

@@ -9,7 +9,7 @@ interface Props {
 const AuthGuard = ({ children }: Props) => {
     const { state: authState } = useAuth();
 
-    if (!authState.isAuthenticated) {
+    if (!authState.isAuthenticated && authState.token !== null) {
         return <Navigate to="/" />;
     }
 
