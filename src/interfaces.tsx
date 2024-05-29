@@ -3,7 +3,7 @@ interface RegisterForm {
     name: string
     email: string
     password: string
-    password_confirm: string
+    password_confirmation: string
     persistent: boolean
 }
 

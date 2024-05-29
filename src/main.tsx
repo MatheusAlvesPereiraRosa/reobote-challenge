@@ -1,4 +1,3 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 
@@ -13,6 +12,10 @@ import {
     Link,
 } from 'react-router-dom'
 
+import AuthGuard from './components/AuthGuard/index.tsx'
+import { AuthProvider } from './context/authContext.tsx'
+import { UsersProvider } from './context/userContext.tsx'
+
 const router = createBrowserRouter([
     {
         path: "/",
@@ -24,10 +27,18 @@ const router = createBrowserRouter([
     },
     {
         path: "/dashboard",
-        element: <Dashboard />
+        element: (
+            <AuthGuard>
+                <Dashboard />
+            </AuthGuard>
+        )
     }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <RouterProvider router={router} />
+    <AuthProvider>
+        <UsersProvider>
+            <RouterProvider router={router} />
+        </UsersProvider>
+    </AuthProvider>
 )

@@ -3,19 +3,24 @@ import React from "react"
 import { useState } from "react"
 import axios from "axios"
 
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 import { motion } from "framer-motion"
 
 import { RegisterForm } from "../../interfaces"
+import { useAuth } from "../../context/authContext"
 
 export const Register = () => {
+
+    const { dispatch: authDispatch } = useAuth()
+
+    const navigate = useNavigate()
 
     const FORM_RESET: RegisterForm = {
         name: "",
         email: "",
         password: "",
-        password_confirm: "",
+        password_confirmation: "",
         persistent: true,
     }
 
@@ -23,7 +28,7 @@ export const Register = () => {
         name: "",
         email: "",
         password: "",
-        password_confirm: "",
+        password_confirmation: "",
         persistent: true,
     })
 
@@ -31,12 +36,13 @@ export const Register = () => {
         await axios
             .post("https://teste.reobote.tec.br/api/register", user)
             .then((res) => {
-                setMessage(res.data)
+                authDispatch({ type: "LOGIN", payload: res.data.access_token })
                 console.log(res.data)
                 setUser(FORM_RESET)
+                navigate("/dashboard")
             })
             .catch((err) => {
-                setMessage(err.response.data)
+                setUser(FORM_RESET)
                 console.log(err.response.data)
             })
     }
@@ -51,6 +57,8 @@ export const Register = () => {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+
+        console.log(user)
 
         registerUser()
     }
@@ -81,7 +89,7 @@ export const Register = () => {
                         className="bg-slate-950 border-slate-800 shadow appearance-none border rounded w-full py-2 px-3 text-white placeholder:text-slate-400 leading-tight focus:outline-none focus:shadow-outline"
                         name="email"
                         onChange={handleChange}
-                        value={user.name}
+                        value={user.email}
                         type="text"
                     />
                 </div>
@@ -92,7 +100,7 @@ export const Register = () => {
                         className="bg-slate-950 border-slate-800 shadow appearance-none border rounded w-full py-2 px-3 text-white placeholder:text-slate-400 leading-tight focus:outline-none focus:shadow-outline"
                         name="password"
                         onChange={handleChange}
-                        value={user.name}
+                        value={user.password}
                         type="password"
                     />
                 </div>
@@ -101,9 +109,9 @@ export const Register = () => {
                     <label className="mb-1 text-lg text-white" htmlFor="">Confirme sua senha</label>
                     <input
                         className="bg-slate-950 border-slate-800 shadow appearance-none border rounded w-full py-2 px-3 text-white placeholder:text-slate-400 leading-tight focus:outline-none focus:shadow-outline"
-                        name="password_confirm"
+                        name="password_confirmation"
                         onChange={handleChange}
-                        value={user.name}
+                        value={user.password_confirmation}
                         type="password"
                     />
                 </div>

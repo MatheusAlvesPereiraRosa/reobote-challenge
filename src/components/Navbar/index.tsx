@@ -1,12 +1,17 @@
-import React from "react"
 import { Link } from "react-router-dom"
 
 import { motion } from "framer-motion"
 
 import { GrLogout } from "react-icons/gr";
 import { FaUserCircle } from "react-icons/fa";
+import { User } from "../../context/interfaces";
 
-export const Navbar = () => {
+interface Props {
+    handleLogout: () => {}
+    logged_user: User
+}
+
+export const Navbar = ({handleLogout, logged_user}: Props) => {
     return (
         <nav className="bg-pink-800">
             <ul className="flex justify-between">
@@ -24,16 +29,16 @@ export const Navbar = () => {
                 <motion.div className="flex flex-row items-center me-3">
                     <motion.li className="flex flex-row items-center py-2 px-3 bg-slate-900 rounded-full text-pink-600">
                         <span className="me-2"><FaUserCircle size={28} /></span>
-                        <p className="m-0">Alguém testando</p>
+                        <p className="m-0">{logged_user?.name}</p>
 
                         <motion.div
                             whileTap={{ scale: 0.9 }}
                             whileHover={{ scale: 1.2 }}
                             className="flex items-center ms-3"
                         >
-                            <Link className="hover:text-white transition" to="/logout">
+                            <div onClick={handleLogout} className="hover:text-white transition">
                                 <span><GrLogout size={24} /></span>
-                            </Link>
+                            </div>
                         </motion.div>
                     </motion.li>
                 </motion.div>

@@ -1,14 +1,16 @@
-import React from "react"
 import { UserItem } from "../UserItem"
+import { User } from "../../context/interfaces"
 
-export const UserList = () => {
+interface Props {
+    users: User[]
+}
+
+export const UserList = ({ users }: Props) => {
     return (
         <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10">
-            <UserItem />
-            <UserItem />
-            <UserItem />
-            <UserItem />
-            <UserItem />
+            {users.map((user) => (
+                <UserItem key={user.id} user={user} />
+            ))}
         </div>
     )
 }
