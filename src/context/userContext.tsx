@@ -1,5 +1,4 @@
-import { createContext, useReducer, useContext, ReactNode } from "react";
-
+import { createContext, useReducer, useContext, ReactNode, Dispatch } from "react";
 import { UsersState } from "./interfaces";
 
 type Action =
@@ -11,14 +10,19 @@ const initialState: UsersState = {
     users: [],
 };
 
-/** Contexto de usuário */
-const UserContext = createContext({
+interface UsersContextProps {
+    state: UsersState;
+    dispatch: Dispatch<Action>;
+}
+
+/** Contexto de usuários */
+const UsersContext = createContext<UsersContextProps>({
     state: initialState,
-    dispatch: () => undefined,
+    dispatch: () => undefined as unknown as Dispatch<Action>,
 });
 
 /** Reducer */
-const userReducer = (state: UsersState, action: Action): UsersState => {
+const usersReducer = (state: UsersState, action: Action): UsersState => {
     switch (action.type) {
         case "SET_USERS_DATA":
             return { ...action.payload };
@@ -34,14 +38,14 @@ interface Props {
 }
 
 /** Provider */
-export const UserProvider = ({ children }: Props) => {
-    const [state, dispatch] = useReducer(userReducer, initialState);
+export const UsersProvider = ({ children }: Props) => {
+    const [state, dispatch] = useReducer(usersReducer, initialState);
 
     return (
-        <UserContext.Provider value={{ state, dispatch }}>
+        <UsersContext.Provider value={{ state, dispatch }}>
             {children}
-        </UserContext.Provider>
+        </UsersContext.Provider>
     );
 };
 
-export const useUser = () => useContext(UserContext);
+export const useUsers = () => useContext(UsersContext);

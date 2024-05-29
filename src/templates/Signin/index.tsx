@@ -36,7 +36,7 @@ export const Register = () => {
         await axios
             .post("https://teste.reobote.tec.br/api/register", user)
             .then((res) => {
-                authDispatch({type: "LOGIN", payload: res.data.access_token})
+                authDispatch({ type: "LOGIN", payload: res.data.access_token })
                 console.log(res.data)
                 setUser(FORM_RESET)
                 navigate("/dashboard")
@@ -109,9 +109,9 @@ export const Register = () => {
                     <label className="mb-1 text-lg text-white" htmlFor="">Confirme sua senha</label>
                     <input
                         className="bg-slate-950 border-slate-800 shadow appearance-none border rounded w-full py-2 px-3 text-white placeholder:text-slate-400 leading-tight focus:outline-none focus:shadow-outline"
-                        name="password_confirm"
+                        name="password_confirmation"
                         onChange={handleChange}
-                        value={user.password_confirm}
+                        value={user.password_confirmation}
                         type="password"
                     />
                 </div>

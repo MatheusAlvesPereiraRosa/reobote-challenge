@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { useAuth } from '../../context/authContext';
 import { Navigate } from 'react-router-dom';
 
@@ -9,7 +9,8 @@ interface Props {
 const AuthGuard = ({ children }: Props) => {
     const { state: authState } = useAuth();
 
-    if (!authState.isAuthenticated && authState.token !== null) {
+    if (authState.isAuthenticated === false || authState.token === null) {
+        console.log("Não está autenticado", authState)
         return <Navigate to="/" />;
     }
 
