@@ -8,6 +8,11 @@ import { motion } from "framer-motion"
 import { useNavigate } from "react-router-dom"
 
 import { LoginForm } from "../../interfaces"
+import { LoginErrors } from "../../interfaces"
+
+import { FaEye } from "react-icons/fa";
+import { IoMdEyeOff } from "react-icons/io";
+
 import { Link } from "react-router-dom"
 import { Alert } from "../../components/Alert"
 import { useAuth } from "../../context/authContext"
@@ -29,6 +34,31 @@ export const Login = () => {
         password: "",
         persistent: true
     })
+
+    const [errors, setErrors] = useState<LoginErrors>({})
+    const [showPassword, setShowPassword] = useState<boolean>(false);
+    const [showPasswordConfirmation, setShowPasswordConfirmation] = useState<boolean>(false);
+
+    /** Validação do formulário */
+    const validate = () => {
+        const newErrors: LoginErrors = {};
+
+        if (!user.email || user.email === "") {
+            newErrors.email = "Digite seu nome"
+        }
+
+        if (!user.password || user.password === "") {
+            newErrors.password = "Digite sua senha"
+        }
+
+        setErrors(newErrors);
+
+        if (Object.keys(newErrors).length > 0) {
+            return false
+        }
+
+        return true
+    }
 
     const registerUser = async () => {
         await axios
@@ -57,7 +87,7 @@ export const Login = () => {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        console.log(user)
+        if (!validate()) return
 
         registerUser()
     }
@@ -81,18 +111,51 @@ export const Login = () => {
                             onChange={handleChange}
                             value={user.email}
                             type="text"
+                            placeholder="John Doe"
                         />
+                        {
+                            errors.email &&
+                            <motion.span
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.3 }}
+                                className="text-md text-pink-600 font-bold mt-1"
+                            >
+                                {errors.email}
+                            </motion.span>
+                        }
                     </div>
 
                     <div className="mb-4 flex flex-col">
                         <label className="mb-1 text-lg text-white" htmlFor="">Senha</label>
-                        <input
-                            className="bg-slate-950 border-slate-800 shadow appearance-none border rounded w-full py-2 px-3 text-white placeholder:text-slate-400 leading-tight focus:outline-none focus:shadow-outline"
-                            name="password"
-                            onChange={handleChange}
-                            value={user.password}
-                            type="password"
-                        />
+                        <div className="relative">
+                            <input
+                                className="bg-slate-950 border-slate-800 shadow appearance-none border rounded w-full py-2 px-3 text-white placeholder:text-slate-400 leading-tight focus:outline-none focus:shadow-outline"
+                                name="password"
+                                onChange={handleChange}
+                                value={user.password}
+                                type={showPassword ? "text" : "password"}
+                                placeholder="Password"
+                            />
+                            <button
+                                type="button"
+                                className="absolute inset-y-0 right-0 px-3 py-2 text-white"
+                                onClick={() => setShowPassword(!showPassword)}
+                            >
+                                {showPassword ? <IoMdEyeOff size={20} /> : <FaEye size={20} />}
+                            </button>
+                        </div>
+                        {
+                            errors.password &&
+                            <motion.span
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.3 }}
+                                className="text-md text-pink-600 font-bold mt-1"
+                            >
+                                {errors.password}
+                            </motion.span>
+                        }
                     </div>
 
                     <div className="flex justify-end">
