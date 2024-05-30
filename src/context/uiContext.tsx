@@ -1,8 +1,7 @@
 import React, { createContext, useReducer, useContext, ReactNode } from 'react';
-
 interface UiState {
     loading: boolean;
-    alert: string | null;
+    alert: string | Record<string, string[]> | null;
 }
 
 type Action =

@@ -11,9 +11,10 @@ body {
 @layer utilities {
     .alert {
         position: absolute;
-        top: 10%;
-        right: 10px;
+        top: 5rem;
+        right: 1.25rem;
         max-width: 16rem;
+        /*z-index: 10;*/
     }
 
     .alert-message {

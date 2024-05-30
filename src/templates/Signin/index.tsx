@@ -5,18 +5,21 @@ import axios from "axios"
 
 import { Link, useNavigate } from "react-router-dom"
 
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 
 import { FaEye } from "react-icons/fa";
 import { IoMdEyeOff } from "react-icons/io";
 
 import { RegisterForm } from "../../interfaces"
 import { RegisterErrors } from "../../interfaces"
+
 import { useAuth } from "../../context/authContext"
+import { useUi } from "../../context/uiContext"
 
 export const Register = () => {
 
     const { dispatch: authDispatch } = useAuth()
+    const { state: UiState, dispatch: uiDispatch } = useUi();
 
     const navigate = useNavigate()
 
@@ -87,13 +90,18 @@ export const Register = () => {
             .post("https://teste.reobote.tec.br/api/register", user)
             .then((res) => {
                 authDispatch({ type: "LOGIN", payload: res.data.access_token })
+                uiDispatch({ type: "SET_ALERT", payload: "Registro realizado com sucesso" })
                 console.log(res.data)
                 setUser(FORM_RESET)
                 navigate("/dashboard")
             })
             .catch((err) => {
                 setUser(FORM_RESET)
+                uiDispatch({ type: "SET_ALERT", payload: err.response.data })
                 console.log(err.response.data)
+            })
+            .finally(() => {
+                uiDispatch({ type: "CLEAR_ALERT" })
             })
 
     }
@@ -136,16 +144,18 @@ export const Register = () => {
                         type="text"
                         placeholder="John Doe"
                     />
-                    {
-                        errors.name &&
-                        <motion.span
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.3 }}
-                            className="text-md text-pink-600 font-bold mt-1">
-                            {errors.name}
-                        </motion.span>
-                    }
+                    <AnimatePresence>
+                        {
+                            errors.name &&
+                            <motion.span
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.3 }}
+                                className="text-md text-pink-600 font-bold mt-1">
+                                {errors.name}
+                            </motion.span>
+                        }
+                    </AnimatePresence>
                 </div>
 
                 <div className="mb-4 flex flex-col">
@@ -158,17 +168,19 @@ export const Register = () => {
                         type="text"
                         placeholder="JohnDoe@gmail.com"
                     />
-                    {
-                        errors.email &&
-                        <motion.span
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.3 }}
-                            className="text-md text-pink-600 font-bold mt-1"
-                        >
-                            {errors.email}
-                        </motion.span>
-                    }
+                    <AnimatePresence>
+                        {
+                            errors.email &&
+                            <motion.span
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.3 }}
+                                className="text-md text-pink-600 font-bold mt-1"
+                            >
+                                {errors.email}
+                            </motion.span>
+                        }
+                    </AnimatePresence>
                 </div>
 
                 <div className="mb-4 flex flex-col">
@@ -190,14 +202,16 @@ export const Register = () => {
                             {showPassword ? <IoMdEyeOff size={20} /> : <FaEye size={20} />}
                         </button>
                     </div>
-                    {
-                        errors.password &&
-                        <motion.span
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.3 }}
-                            className="text-md text-pink-600 font-bold mt-1">{errors.password}</motion.span>
-                    }
+                    <AnimatePresence>
+                        {
+                            errors.password &&
+                            <motion.span
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.3 }}
+                                className="text-md text-pink-600 font-bold mt-1">{errors.password}</motion.span>
+                        }
+                    </AnimatePresence>
                 </div>
 
                 <div className="mb-4 flex flex-col">
@@ -219,15 +233,18 @@ export const Register = () => {
                             {showPasswordConfirmation ? <IoMdEyeOff size={20} /> : <FaEye size={20} />}
                         </button>
                     </div>
-                    {
-                        errors.password_confirmation &&
-                        <motion.span
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.3 }}
-                            className="text-md text-pink-600 font-bold mt-1">{errors.password_confirmation}
-                        </motion.span>
-                    }
+                    <AnimatePresence>
+                        {
+                            errors.password_confirmation &&
+                            <motion.span
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0, size: 0 }}
+                                transition={{ duration: 0.3 }}
+                                className="text-md text-pink-600 font-bold mt-1">{errors.password_confirmation}
+                            </motion.span>
+                        }
+                    </AnimatePresence>
                 </div>
 
                 <div className="flex justify-end">

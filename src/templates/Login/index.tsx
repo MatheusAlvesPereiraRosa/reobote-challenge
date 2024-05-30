@@ -3,7 +3,7 @@ import React from "react"
 import { useState } from "react"
 import axios from "axios"
 
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 
 import { useNavigate } from "react-router-dom"
 
@@ -16,10 +16,12 @@ import { IoMdEyeOff } from "react-icons/io";
 import { Link } from "react-router-dom"
 import { Alert } from "../../components/Alert"
 import { useAuth } from "../../context/authContext"
+import { useUi } from "../../context/uiContext"
 
 export const Login = () => {
 
     const { dispatch: authDispatch } = useAuth()
+    const { state: UiState, dispatch: uiDispatch } = useUi()
 
     const navigate = useNavigate()
 
@@ -37,7 +39,6 @@ export const Login = () => {
 
     const [errors, setErrors] = useState<LoginErrors>({})
     const [showPassword, setShowPassword] = useState<boolean>(false);
-    const [showPasswordConfirmation, setShowPasswordConfirmation] = useState<boolean>(false);
 
     /** Validação do formulário */
     const validate = () => {
@@ -65,6 +66,7 @@ export const Login = () => {
             .post("https://teste.reobote.tec.br/api/login", user)
             .then((res) => {
                 authDispatch({ type: "LOGIN", payload: res.data.access_token })
+                uiDispatch({ type: "SET_ALERT", payload: "Login realizado com sucesso" })
                 console.log(res.data)
                 setUser(FORM_RESET)
                 navigate("/dashboard")
@@ -72,7 +74,13 @@ export const Login = () => {
             .catch((err) => {
                 //setMessage(err.response.data)
                 setUser(FORM_RESET)
+                uiDispatch({ type: "SET_ALERT", payload: err.response.data })
                 console.log(err.response.data)
+            })
+            .finally(() => {
+                setTimeout(() => {
+                    uiDispatch({ type: "CLEAR_ALERT" })
+                }, 5000)
             })
     }
 
@@ -82,6 +90,11 @@ export const Login = () => {
             ...prevState,
             [name]: value
         }))
+
+        setErrors(prevState => {
+            const { [name]: _, ...rest } = prevState;
+            return rest;
+        });
     }
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -94,7 +107,7 @@ export const Login = () => {
 
     return (
         <>
-            <Alert />
+            <Alert message={UiState.alert} />
             <main className="flex items-center justify-center h-screen bg-gradient-to-b from-slate-700 to-pink-800">
                 <motion.form
                     initial={{ opacity: 0, translateY: 50 }}
@@ -113,17 +126,20 @@ export const Login = () => {
                             type="text"
                             placeholder="John Doe"
                         />
-                        {
-                            errors.email &&
-                            <motion.span
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ duration: 0.3 }}
-                                className="text-md text-pink-600 font-bold mt-1"
-                            >
-                                {errors.email}
-                            </motion.span>
-                        }
+                        <AnimatePresence>
+                            {
+                                errors.email &&
+                                <motion.span
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{ duration: 0.3 }}
+                                    className="text-md text-pink-600 font-bold mt-1"
+                                >
+                                    {errors.email}
+                                </motion.span>
+                            }
+                        </AnimatePresence>
                     </div>
 
                     <div className="mb-4 flex flex-col">
@@ -145,17 +161,20 @@ export const Login = () => {
                                 {showPassword ? <IoMdEyeOff size={20} /> : <FaEye size={20} />}
                             </button>
                         </div>
-                        {
-                            errors.password &&
-                            <motion.span
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ duration: 0.3 }}
-                                className="text-md text-pink-600 font-bold mt-1"
-                            >
-                                {errors.password}
-                            </motion.span>
-                        }
+                        <AnimatePresence>
+                            {
+                                errors.password &&
+                                <motion.span
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{ duration: 0.3 }}
+                                    className="text-md text-pink-600 font-bold mt-1"
+                                >
+                                    {errors.password}
+                                </motion.span>
+                            }
+                        </AnimatePresence>
                     </div>
 
                     <div className="flex justify-end">

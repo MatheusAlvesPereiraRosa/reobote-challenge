@@ -5,16 +5,19 @@ import { UserList } from "../../components/UserList"
 
 import { useAuth } from "../../context/authContext"
 import { useUsers } from "../../context/userContext"
+import { useUi } from "../../context/uiContext"
 
 import { logoutService } from "../../services/authServices"
 
 import axios from "axios"
 
 import { useNavigate } from "react-router-dom"
+import { Alert } from "../../components/Alert"
 
 export const Dashboard = () => {
     const { state: usersState, dispatch: userDispatch } = useUsers();
     const { state: authState, dispatch: authDispatch } = useAuth();
+    const { state: UiState, dispatch: uiDispatch } = useUi()
 
     const navigate = useNavigate();
 
@@ -37,8 +40,17 @@ export const Dashboard = () => {
 
     const handleLogout = async () => {
         if (authState.loggedUser && authState.token) {
+
             await logoutService(authState.loggedUser.email, authState.token);
+
             authDispatch({ type: "LOGOUT" });
+
+            uiDispatch({type: "SET_ALERT", payload: "Logout realizado com sucesso"})
+
+            setTimeout(() => {
+                uiDispatch({type: "CLEAR_ALERT"})
+            }, 3000)
+
             navigate('/');
         }
     };
@@ -51,6 +63,7 @@ export const Dashboard = () => {
 
     return (
         <>
+            <Alert message={UiState.alert} />
             <Navbar handleLogout={handleLogout} logged_user={authState.loggedUser}/>
             <main className="flex flex-col px-16 pb-10">
                 <h1 className="text-3xl text-white text-center my-14">Usuários cadastrados</h1>
