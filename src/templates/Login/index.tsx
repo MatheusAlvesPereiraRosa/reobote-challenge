@@ -66,7 +66,7 @@ export const Login = () => {
             .post("https://teste.reobote.tec.br/api/login", user)
             .then((res) => {
                 authDispatch({ type: "LOGIN", payload: res.data.access_token })
-                uiDispatch({ type: "SET_ALERT", payload: "Login realizado com sucesso" })
+                uiDispatch({ type: "SET_ALERT", payload: "Login successful!" })
                 console.log(res.data)
                 setUser(FORM_RESET)
                 navigate("/dashboard")
@@ -181,11 +181,13 @@ export const Login = () => {
                         <Link className="text-white" to="/register">Não possui conta ainda?</Link>
                     </div>
 
-                    <button
+                    <motion.button
+                        whileTap={{ scale: 0.8 }}
+                        transition={{duration: 0.1}}
                         className="w-full px-6 py-4 mt-4 text-lg rounded-md text-white bg-pink-800 hover:bg-white hover:text-pink-800 transition"
                     >
-                        Logar
-                    </button>
+                        Entrar
+                    </motion.button>
                 </motion.form>
             </main>
         </>

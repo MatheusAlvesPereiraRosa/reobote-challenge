@@ -45,7 +45,7 @@ export const Dashboard = () => {
 
             authDispatch({ type: "LOGOUT" });
 
-            uiDispatch({type: "SET_ALERT", payload: "Logout realizado com sucesso"})
+            uiDispatch({type: "SET_ALERT", payload: "Logout successful!"})
 
             setTimeout(() => {
                 uiDispatch({type: "CLEAR_ALERT"})
