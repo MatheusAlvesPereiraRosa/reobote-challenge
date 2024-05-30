@@ -75,4 +75,5 @@ E pronto, o projeto já o Front-End já vai estar rodando.
 
 ### Dashboard
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![image](https://github.com/MatheusAlvesPereiraRosa/reobote-challenge/assets/88355395/b678c5d3-35fc-4204-8a25-5f1550553234)
+
