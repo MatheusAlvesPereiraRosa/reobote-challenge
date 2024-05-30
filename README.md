@@ -1,31 +1,78 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Reobote-challente
 
-Currently, two official plugins are available:
+Seja bem vindo ao meu projeto, sou Matheus Alves e esse projeto foi feito para concorrer a vaga de desenvolvedor de software (Front-End).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Especificações
 
-## Expanding the ESLint configuration
+O Front-End foi dividido de acordo com boas práticas na hora de organizar a aplicação, sendo as pastas principais:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Components: Pasta utilizada para guardar os componentes reutilizáveis e menores da aplicação
 
-- Configure the top-level `parserOptions` property like this:
+- Templates: Componentes de páginas que serão utilizados para se navegar na aplicação.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+- Context: Irá guardar os contextos principais que poderão usados de forma global na aplicação utilizando useContext e useReducer.
+
+- Services: Arquivo que guarda os serviços da aplicação, no caso o único serviço guardado foi o de logout.
+
+- Assets: Pasta responsável pelos arquivos de imagens, no caso a única imagem e a do react padrão.
+
+
+## Demonstração
+
+O projeto possui uma versão hospedada para facilitar os testes, segue o link abaixo
+
+[https://tech-challenge-w.netlify.app/](https://reobote-challenge-matheus.netlify.app/)
+
+
+## Instalação
+
+Clone o repositório com o comando git clone no github e abra o arquivo com o terminal de sua escolha.
+
+```
+  https://github.com/MatheusAlvesPereiraRosa/reobote-challenge.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
-# reobote-challenge
+Depois rode o comando:
+
+```
+  npm install
+```
+
+Após isso rode o projeto com o comando npm run dev
+
+```
+  npm run dev
+```
+
+E pronto, o projeto já o Front-End já vai estar rodando.
+
+## Bibliotecas utilizadas
+
+**axios:** Uma biblioteca JavaScript popular usada para fazer solicitações HTTP do navegador. Ele fornece uma API simples e consistente para interagir com serviços RESTful.
+
+**framer-motion:** Uma biblioteca responsável por animar elementos em Javascript, tendo uma ampla gama de opções para aumentar a interatividade e usabilidade da aplicação.
+
+**autoprefixer:** Um plugin PostCSS que adiciona automaticamente prefixos de fornecedores a estilos CSS. Ele garante compatibilidade entre navegadores adicionando os prefixos necessários.
+
+**postcss:** Uma ferramenta para transformar CSS em JavaScript. É frequentemente usado para tarefas como minificação, autoprefixação e outras otimizações de CSS.
+
+**typescript (obrigatório):** É um superconjunto sintático estrito de JavaScript e adiciona tipagem estática opcional à linguagem.
+
+**tailwindcss (obrigatório):** Uma estrutura CSS utilitária que fornece um conjunto de classes para criar designs personalizados e responsivos rapidamente. Simplifica o desenvolvimento CSS.
+
+**vite:** Uma ferramenta de construção para desenvolvimento web moderno. Ele oferece desenvolvimento rápido e compilações de produção otimizadas para o framework que está sendo utilizado.
+
+## Screenshots
+
+### Login
+
+![image](https://github.com/MatheusAlvesPereiraRosa/reobote-challenge/assets/88355395/38490abc-49e7-4860-85c4-043ef694c7c7)
+
+### Cadastro/Registro
+
+![image](https://github.com/MatheusAlvesPereiraRosa/reobote-challenge/assets/88355395/ac36107b-ed91-4e74-95fe-b26ff0760e57)
+
+### Dashboard
+
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
