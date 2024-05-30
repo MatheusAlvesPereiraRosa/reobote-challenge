@@ -8,7 +8,7 @@ import { User } from "../../context/interfaces";
 
 interface Props {
     handleLogout: () => {}
-    logged_user: User
+    logged_user: User | null
 }
 
 export const Navbar = ({handleLogout, logged_user}: Props) => {

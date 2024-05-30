@@ -40,7 +40,7 @@ export const UserItem = ({user}: Props) => {
 
             <div className="flex items-center mb-1">
                 <span className="text-white me-1"><MdVerifiedUser size={18} /></span>
-                <p className="text-white">Email verficado: {user.email_verified_at}</p>
+                <p className="text-white">Email verficado: {user.email_verified_at === null ? "Não" : "Sim"}</p>
             </div>
 
             <div className="flex items-center mb-1">
