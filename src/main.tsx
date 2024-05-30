@@ -8,8 +8,6 @@ import { Dashboard } from './templates/Dashboard/index.tsx'
 import {
     createBrowserRouter,
     RouterProvider,
-    Route,
-    Link,
 } from 'react-router-dom'
 
 import AuthGuard from './components/AuthGuard/index.tsx'
