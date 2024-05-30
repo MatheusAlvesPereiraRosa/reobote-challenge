@@ -10,7 +10,6 @@ const AuthGuard = ({ children }: Props) => {
     const { state: authState } = useAuth();
 
     if (authState.isAuthenticated === false || authState.token === null) {
-        console.log("Não está autenticado", authState)
         return <Navigate to="/" />;
     }
 

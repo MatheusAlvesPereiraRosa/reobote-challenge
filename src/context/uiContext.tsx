@@ -1,8 +1,5 @@
 import React, { createContext, useReducer, useContext, ReactNode } from 'react';
-interface UiState {
-    loading: boolean;
-    alert: string | Record<string, string[]> | null;
-}
+import { UiState } from './interfaces';
 
 type Action =
     | { type: 'SET_LOADING' }

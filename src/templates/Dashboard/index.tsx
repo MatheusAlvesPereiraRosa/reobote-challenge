@@ -36,10 +36,9 @@ export const Dashboard = () => {
             .then((res) => {
                 authDispatch({ type: "SET_LOGGED_USER", payload: res.data.logged_user })
                 userDispatch({ type: "SET_USERS_DATA", payload: res.data })
-                console.log(res.data)
             })
             .catch((err) => {
-                console.log(err.response.data)
+                uiDispatch({type: "SET_ALERT", payload: err.response.data})
             })
             .finally(() => {
                 uiDispatch({ type: "CLEAR_LOADING" })
@@ -74,7 +73,7 @@ export const Dashboard = () => {
         const end = usersState.number_users;
         if (start === end) return;
 
-        const duration = 2000; // 2 seconds
+        const duration = 2000;
         const totalFrames = Math.round(duration / 16); // 60fps
         let frame = 0;
 

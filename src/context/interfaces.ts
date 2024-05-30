@@ -1,11 +1,4 @@
-/** AuthContext interfaces */
-interface AuthState {
-    isAuthenticated: boolean;
-    token: string | null;
-    loggedUser: User | null;
-}
-
-/** Interfaces gerais dos contextos */
+/** Interfaces gerais dos contextos e dos usuários */
 interface User {
     id: number;
     name: string;
@@ -20,4 +13,15 @@ interface UsersState {
     users: User[];
 }
 
-export type { AuthState, User, UsersState }
+interface AuthState {
+    isAuthenticated: boolean;
+    token: string | null;
+    loggedUser: User | null;
+}
+
+interface UiState {
+    loading: boolean;
+    alert: string | Record<string, string[]> | null;
+}
+
+export type { AuthState, User, UsersState, UiState }

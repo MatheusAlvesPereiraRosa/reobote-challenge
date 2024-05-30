@@ -93,14 +93,15 @@ export const Register = () => {
             .then((res) => {
                 authDispatch({ type: "LOGIN", payload: res.data.access_token })
                 uiDispatch({ type: "SET_ALERT", payload: "Registered successful!" })
-                console.log(res.data)
+   
                 setUser(FORM_RESET)
+    
                 navigate("/dashboard")
             })
             .catch((err) => {
                 setUser(FORM_RESET)
+
                 uiDispatch({ type: "SET_ALERT", payload: err.response.data })
-                console.log(err.response.data)
             })
             .finally(() => {
                 setTimeout(() => {

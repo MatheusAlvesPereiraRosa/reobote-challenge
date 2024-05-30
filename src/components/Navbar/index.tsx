@@ -28,12 +28,15 @@ export const Navbar = ({ handleLogout, logged_user, loading }: Props) => {
                     </motion.li>
                 </motion.div>
                 <motion.div className="flex flex-row items-center me-3">
-                    <motion.li className="flex flex-row items-center py-2 px-3 bg-slate-900 rounded-full text-pink-600">
+                    <motion.li className="flex flex-row items-center py-1 px-3 bg-slate-900 rounded-full text-pink-600">
                         <span className="me-2"><FaUserCircle size={28} /></span>
                         {loading === true ?
-                            <div className="skeleton h-6 w-24 rounded-md bg-pink-600"></div>
+                            <div className="skeleton h-8 w-24 my-1 rounded-md bg-pink-600"></div>
                             :
-                            <p className="m-0">{logged_user?.name}</p>
+                            <div>
+                                <p className="m-0">{logged_user?.name}</p>
+                                <p className="m-0 text-xs">{logged_user?.email}</p>
+                            </div>
                         }
                         <motion.div
                             whileTap={{ scale: 0.9 }}

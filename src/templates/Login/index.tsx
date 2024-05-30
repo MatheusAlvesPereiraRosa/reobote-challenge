@@ -67,15 +67,13 @@ export const Login = () => {
             .then((res) => {
                 authDispatch({ type: "LOGIN", payload: res.data.access_token })
                 uiDispatch({ type: "SET_ALERT", payload: "Login successful!" })
-                console.log(res.data)
+
                 setUser(FORM_RESET)
                 navigate("/dashboard")
             })
             .catch((err) => {
-                //setMessage(err.response.data)
                 setUser(FORM_RESET)
                 uiDispatch({ type: "SET_ALERT", payload: err.response.data })
-                console.log(err.response.data)
             })
             .finally(() => {
                 setTimeout(() => {

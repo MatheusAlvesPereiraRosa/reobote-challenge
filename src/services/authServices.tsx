@@ -11,8 +11,7 @@ export const logoutService = async (email: string, token: string): Promise<void>
                     'Authorization': `Bearer ${token}`,
                 },
             }
-        );
-        console.log(response.data);
+        )
     } catch (error: any) {
         console.error(error.response ? error.response.data : error.message);
     }

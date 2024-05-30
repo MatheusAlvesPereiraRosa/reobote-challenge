@@ -1,4 +1,4 @@
-/** Interfaces da aplicação */
+/** Interfaces dos formulários da aplicação */
 interface RegisterForm {
     name: string
     email: string
