@@ -30,7 +30,7 @@ O projeto possui uma versão hospedada para facilitar os testes, segue o link ab
 Clone o repositório com o comando git clone no github e abra o arquivo com o terminal de sua escolha.
 
 ```
-  https://github.com/MatheusAlvesPereiraRosa/reobote-challenge.git
+  git clone https://github.com/MatheusAlvesPereiraRosa/reobote-challenge.git
 ```
 
 Depois rode o comando:
