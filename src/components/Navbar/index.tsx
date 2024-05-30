@@ -9,9 +9,10 @@ import { User } from "../../context/interfaces";
 interface Props {
     handleLogout: () => {}
     logged_user: User | null
+    loading: boolean
 }
 
-export const Navbar = ({handleLogout, logged_user}: Props) => {
+export const Navbar = ({ handleLogout, logged_user, loading }: Props) => {
     return (
         <nav className="bg-pink-800">
             <ul className="flex justify-between">
@@ -29,8 +30,11 @@ export const Navbar = ({handleLogout, logged_user}: Props) => {
                 <motion.div className="flex flex-row items-center me-3">
                     <motion.li className="flex flex-row items-center py-2 px-3 bg-slate-900 rounded-full text-pink-600">
                         <span className="me-2"><FaUserCircle size={28} /></span>
-                        <p className="m-0">{logged_user?.name}</p>
-
+                        {loading === true ?
+                            <div className="skeleton h-6 w-24 rounded-md bg-pink-600"></div>
+                            :
+                            <p className="m-0">{logged_user?.name}</p>
+                        }
                         <motion.div
                             whileTap={{ scale: 0.9 }}
                             whileHover={{ scale: 1.2 }}
