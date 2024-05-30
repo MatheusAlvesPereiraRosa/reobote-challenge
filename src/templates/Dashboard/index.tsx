@@ -45,10 +45,10 @@ export const Dashboard = () => {
 
             authDispatch({ type: "LOGOUT" });
 
-            uiDispatch({type: "SET_ALERT", payload: "Logout successful!"})
+            uiDispatch({ type: "SET_ALERT", payload: "Logout successful!" })
 
             setTimeout(() => {
-                uiDispatch({type: "CLEAR_ALERT"})
+                uiDispatch({ type: "CLEAR_ALERT" })
             }, 3000)
 
             navigate('/');
@@ -64,7 +64,7 @@ export const Dashboard = () => {
     return (
         <>
             <Alert message={UiState.alert} />
-            <Navbar handleLogout={handleLogout} logged_user={authState.loggedUser}/>
+            <Navbar handleLogout={handleLogout} logged_user={authState.loggedUser} />
             <main className="flex flex-col px-16 pb-10">
                 <h1 className="text-3xl text-white text-center my-14">Usuários cadastrados</h1>
 

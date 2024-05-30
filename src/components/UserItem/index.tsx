@@ -10,15 +10,16 @@ import { HiUserAdd } from "react-icons/hi";
 import { User } from "../../context/interfaces";
 
 interface Props {
-    user: User
+    user: User,
+    index: number
 }
 
-export const UserItem = ({user}: Props) => {
+export const UserItem = ({user, index}: Props) => {
     return (
         <motion.div
             initial={{ opacity: 0, translateY: 50 }}
             animate={{ opacity: 1, translateY: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.3, delay: index * 0.25 }}
             className="p-6 bg-cyan-950 rounded-md"
         >
             <div className="flex items-center border-b-2 pb-2 mb-2 border-white">
