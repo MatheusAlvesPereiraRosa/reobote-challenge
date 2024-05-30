@@ -1,10 +1,6 @@
 import axios from "axios";
 
-import { useUi } from "../context/uiContext";
-
-export const logoutService = async (email: string, token: string): Promise<void> => {
-
-    const { dispatch: uiDispatch } = useUi()
+export const logoutService = async (email: string, token: string, uiDispatch?: any ): Promise<void> => {
 
     try {
         await axios.post(

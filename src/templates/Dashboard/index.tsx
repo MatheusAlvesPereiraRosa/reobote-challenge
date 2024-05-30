@@ -48,7 +48,7 @@ export const Dashboard = () => {
     const handleLogout = async () => {
         if (authState.loggedUser && authState.token) {
 
-            await logoutService(authState.loggedUser.email, authState.token);
+            await logoutService(authState.loggedUser.email, authState.token, uiDispatch);
 
             authDispatch({ type: "LOGOUT" });
 
