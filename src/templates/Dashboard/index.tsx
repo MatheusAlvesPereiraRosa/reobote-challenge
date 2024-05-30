@@ -2,6 +2,7 @@ import { useEffect } from "react"
 
 import { Navbar } from "../../components/Navbar"
 import { UserList } from "../../components/UserList"
+import { Loading } from "../../components/Loading"
 
 import { useAuth } from "../../context/authContext"
 import { useUsers } from "../../context/userContext"
@@ -22,6 +23,7 @@ export const Dashboard = () => {
     const navigate = useNavigate();
 
     const setupDashboard = async () => {
+        uiDispatch({type: "SET_LOADING"})
         await axios
             .get("https://teste.reobote.tec.br/api/dashboard", {
                 headers: {
@@ -35,6 +37,9 @@ export const Dashboard = () => {
             })
             .catch((err) => {
                 console.log(err.response.data)
+            })
+            .finally(() => {
+                uiDispatch({type: "CLEAR_LOADING"})
             })
     }
 
@@ -64,12 +69,16 @@ export const Dashboard = () => {
     return (
         <>
             <Alert message={UiState.alert} />
-            <Navbar handleLogout={handleLogout} logged_user={authState.loggedUser} />
-            <main className="flex flex-col px-16 pb-10">
-                <h1 className="text-3xl text-white text-center my-14">Usuários cadastrados</h1>
+            <Navbar handleLogout={handleLogout} logged_user={authState.loggedUser} loading={UiState.loading} />
+            {!UiState.loading !== true ?   
+                <Loading />
+                :
+                <main className="flex flex-col px-16 pb-10">
+                    <h1 className="text-3xl text-white text-center my-14">Usuários cadastrados</h1>
 
-                <UserList users={usersState.users} />
-            </main>
+                    <UserList users={usersState.users} />
+                </main>
+            }
         </>
     )
 }

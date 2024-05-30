@@ -8,6 +8,12 @@ body {
     @apply bg-slate-900;
 }
 
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 @layer utilities {
     .alert {
         position: absolute;
@@ -20,9 +26,48 @@ body {
     .alert-message {
         max-width: 15rem;
     }
+
+    .loader-container {
+        height: 85vh;
+        display: flex;
+        justify-content: center;
+        padding-block: 2rem;
+        align-items: center;
+    }
+
+    .smooth-loader {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        border-top: .5rem solid #e400b2;
+        border-left: .5rem solid #5400c2;
+        border-right: .5rem solid rgba(255, 255, 255, 0);
+        animation: spin 0.575s infinite linear;
+    }
+
+    .skeleton {
+        background: linear-gradient(
+            -90deg,
+            rgba(255, 5, 222, 0.363) 25%,
+            rgba(136, 0, 177, 0.562) 50%,
+            rgba(20, 1, 65, 0.836) 75%
+        );
+        background-size: 200% 100%;
+        animation: skeleton-loading 1.5s infinite;
+    }
+
+    @keyframes skeleton-loading {
+        0% {
+            background-position: 200% 0;
+        }
+        100% {
+            background-position: -200% 0;
+        }
+    }
 }
 
 @layer base {
+
     h1,
     h2,
     h3,
