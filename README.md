@@ -7,7 +7,7 @@ Seja bem vindo ao meu projeto, sou Matheus Alves e esse projeto foi feito para c
 
 O Front-End foi dividido de acordo com boas práticas na hora de organizar a aplicação, sendo as pastas principais:
 
-- Components: Pasta utilizada para guardar os componentes reutilizáveis e menores da aplicação
+- Components: Pasta utilizada para guardar os componentes reutilizáveis e menores da aplicação.
 
 - Templates: Componentes de páginas que serão utilizados para se navegar na aplicação.
 
@@ -20,7 +20,7 @@ O Front-End foi dividido de acordo com boas práticas na hora de organizar a apl
 
 ## Demonstração
 
-O projeto possui uma versão hospedada para facilitar os testes, segue o link abaixo
+O projeto possui uma versão hospedada para facilitar os testes, segue o link abaixo:
 
 [https://tech-challenge-w.netlify.app/](https://reobote-challenge-matheus.netlify.app/)
 
@@ -29,7 +29,7 @@ Obs.: A melhor opção continua sendo rodar o projeto localmente para visualizar
 
 ## Instalação
 
-Clone o repositório com o comando git clone no github e abra o arquivo com o terminal de sua escolha.
+Clone o repositório com o comando git clone no github e abra o arquivo com o terminal de sua escolha:
 
 ```
   git clone https://github.com/MatheusAlvesPereiraRosa/reobote-challenge.git
@@ -41,13 +41,13 @@ Depois rode o comando:
   npm install
 ```
 
-Após isso rode o projeto com o comando npm run dev
+Após isso rode o projeto com o comando npm run dev:
 
 ```
   npm run dev
 ```
 
-E pronto, o projeto já o Front-End já vai estar rodando.
+E pronto, o projeto já o estará rodando.
 
 ## Bibliotecas utilizadas
 
