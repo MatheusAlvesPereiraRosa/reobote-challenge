@@ -13,7 +13,7 @@ O Front-End foi dividido de acordo com boas práticas na hora de organizar a apl
 
 - Context: Irá guardar os contextos principais que poderão usados de forma global na aplicação utilizando useContext e useReducer.
 
-- Services: Arquivo que guarda os serviços da aplicação, no caso o único serviço guardado foi o de logout.
+- Services: Pasta que guarda os serviços da aplicação, no caso o único serviço guardado foi o de logout.
 
 - Assets: Pasta responsável pelos arquivos de imagens, no caso a única imagem e a do react padrão.
 
