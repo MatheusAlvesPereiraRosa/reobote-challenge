@@ -24,6 +24,8 @@ O projeto possui uma versão hospedada para facilitar os testes, segue o link ab
 
 [https://tech-challenge-w.netlify.app/](https://reobote-challenge-matheus.netlify.app/)
 
+Obs.: A melhor opção continua sendo rodar o projeto localmente para visualizar seu funcionamento completo, pois a netlify possui alguns problemas caso sejam escritos as rotas da aplicação via URL (digitar a URL "na mão" em vez do fluxo de navegação padrão via redirecionamentos e links do react-router-dom).
+
 
 ## Instalação
 
