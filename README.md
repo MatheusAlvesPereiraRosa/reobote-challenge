@@ -63,6 +63,8 @@ E pronto, o projeto já o estará rodando.
 
 **tailwindcss (obrigatório):** Uma estrutura CSS utilitária que fornece um conjunto de classes para criar designs personalizados e responsivos rapidamente. Simplifica o desenvolvimento CSS.
 
+**react-router-dom:** Biblioteca responsável por adicionar navegação entre páginas no react.
+
 **vite:** Uma ferramenta de construção para desenvolvimento web moderno. Ele oferece desenvolvimento rápido e compilações de produção otimizadas para o framework que está sendo utilizado.
 
 ## Screenshots
